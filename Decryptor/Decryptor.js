@@ -27,7 +27,7 @@ try {
 			const divMessage = fragment.appendChild(document.createElement(`div`));
 			divMessage.classList.add(`-message`, `layer`, `rounded`, `with-padding`, `flex`, `column`);
 			divMessage.classList.toggle(`-owner`, owner.name === message.sender);
-			
+
 			//#region External
 			const divExternal = divMessage.appendChild(document.createElement(`div`));
 			divExternal.classList.add(`-external`, `flex`);
@@ -126,14 +126,11 @@ try {
 	}
 
 	async function load() {
-		window.load(new Promise(async (resolve) => {
-			const last = listRecentFiles[0];
-			if (last !== undefined) {
-				const chat = Chat.import(JSON.parse((await last.text()).replace(/\\u/g, `\\\\u`)));
-				await build(chat);
-				resolve(null);
-			}
-		}), 200, 500);
+		const last = listRecentFiles[0];
+		if (last !== undefined) {
+			const chat = Chat.import(JSON.parse((await last.text()).replace(/\\u/g, `\\\\u`)));
+			await build(chat);
+		}
 	}
 
 	load();

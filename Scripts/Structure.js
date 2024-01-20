@@ -9,12 +9,12 @@ const developer = document.getElement(HTMLMetaElement, `meta[name="author"]`).co
 const title = document.getElement(HTMLMetaElement, `meta[name="application-name"]`).content;
 //#endregion
 
-/** @type {Locker<File[]>} */ const lockerRecentFiles = new Locker(developer, title, `Recent Files`);
-window.addEventListener(`beforeunload`, async (event) => {
-	await lockerRecentFiles.set(listRecentFiles);
-});
+// /** @type {Locker<File[]>} */ const lockerRecentFiles = new Locker(developer, title, `Recent Files`);
+// window.addEventListener(`beforeunload`, async (event) => {
+// 	await lockerRecentFiles.set(listRecentFiles);
+// });
 
-const listRecentFiles = await lockerRecentFiles.get() ?? [];
+/** @type {File[]} */ const listRecentFiles = [];
 
 /**
  * @param {string} input 
