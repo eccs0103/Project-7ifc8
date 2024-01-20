@@ -1,0 +1,52 @@
+body {
+	position: fixed;
+	inset: 0;
+}
+
+label[for="reader"] {
+	position: absolute;
+	inset: auto var(--size-large-gap) var(--size-large-gap) auto;
+	width: fit-content;
+	height: fit-content;
+	border-radius: 100vmin;
+}
+
+div#container {
+	height: 100%;
+	overflow: hidden auto;
+}
+
+h1.-title {
+	position: sticky;
+	top: 0;
+}
+
+div.-message {
+	min-width: 80vmin;
+	max-width: 80%;
+	align-self: start;
+}
+
+div.-message.-owner {
+	align-self: end;
+}
+
+div.-details {
+	justify-content: space-between;
+}
+
+time {
+	font-size: 0.8em;
+}
+
+span.-reactions {
+	overflow: auto hidden;
+}
+
+span.-reaction {
+	text-wrap: nowrap;
+}
+
+span.-reaction:not(:first):after {
+	content: ", ";
+}
