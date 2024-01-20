@@ -129,11 +129,11 @@ try {
 		const last = listRecentFiles[0];
 		if (last !== undefined) {
 			const chat = Chat.import(JSON.parse((await last.text()).replace(/\\u/g, `\\\\u`)));
-			await build(chat);
+			await window.load(build(chat), 200, 600);
 		}
 	}
 
-	load();
+	await load();
 	inputReader.addEventListener(`click`, (event) => {
 		inputReader.value = ``;
 	});
@@ -143,7 +143,7 @@ try {
 		const file = files[0];
 		if (file) {
 			listRecentFiles.unshift(file);
-			load();
+			await load();
 		}
 	});
 	//#endregion
