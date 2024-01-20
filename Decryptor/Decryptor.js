@@ -13,20 +13,21 @@ try {
 	 */
 	async function build(chat) {
 		const owner = chat.participants[chat.participants.length - 1];
-
 		const fragment = document.createDocumentFragment();
+
 		//#region Title
 		const h1Title = fragment.appendChild(document.createElement(`h1`));
 		h1Title.classList.add(`-title`);
 		h1Title.textContent = chat.title;
-		//#endregion
 		const hr = fragment.appendChild(document.createElement(`hr`));
 		hr.classList.add(`layer`);
+		//#endregion
 		//#region Messages
 		for (const message of chat.messages.sort((current, next) => +current.timestamp - +next.timestamp)) {
 			const divMessage = fragment.appendChild(document.createElement(`div`));
 			divMessage.classList.add(`-message`, `layer`, `rounded`, `with-padding`, `flex`, `column`);
 			divMessage.classList.toggle(`-owner`, owner.name === message.sender);
+			
 			//#region External
 			const divExternal = divMessage.appendChild(document.createElement(`div`));
 			divExternal.classList.add(`-external`, `flex`);
@@ -104,6 +105,7 @@ try {
 			const time = divDetails.appendChild(document.createElement(`time`));
 			time.dateTime = message.timestamp.toISOString();
 			time.textContent = message.timestamp.toLocaleString();
+
 			//#region Reactions
 			const spanReactions = divDetails.appendChild(document.createElement(`span`));
 			spanReactions.classList.add(`-reactions`, `depth`, `rounded`, `flex`);
