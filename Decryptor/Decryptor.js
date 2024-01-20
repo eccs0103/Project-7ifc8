@@ -40,7 +40,7 @@ try {
 				aLink.addEventListener(`click`, async (event) => {
 					event.preventDefault();
 					if (await window.confirmAsync(`Follow the link?\n${link}`)) {
-						location.assign(link);
+						window.open(link, '_blank')?.focus();
 					}
 				});
 				const imgIcon = aLink.appendChild(document.createElement(`img`));
@@ -58,7 +58,7 @@ try {
 				aLink.addEventListener(`click`, async (event) => {
 					event.preventDefault();
 					if (await window.confirmAsync(`Follow the link?\n${link}`)) {
-						location.assign(link);
+						window.open(link, '_blank')?.focus();
 					}
 				});
 				const imgIcon = aLink.appendChild(document.createElement(`img`));
@@ -76,7 +76,7 @@ try {
 				aLink.addEventListener(`click`, async (event) => {
 					event.preventDefault();
 					if (await window.confirmAsync(`Follow the link?\n${link}`)) {
-						location.assign(link);
+						window.open(link, '_blank')?.focus();
 					}
 				});
 				const imgIcon = aLink.appendChild(document.createElement(`img`));
