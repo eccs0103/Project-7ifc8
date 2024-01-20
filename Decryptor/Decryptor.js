@@ -27,10 +27,77 @@ try {
 			const divMessage = fragment.appendChild(document.createElement(`div`));
 			divMessage.classList.add(`-message`, `layer`, `rounded`, `with-padding`, `flex`, `column`);
 			divMessage.classList.toggle(`-owner`, owner.name === message.sender);
-			const spanContext = divMessage.appendChild(document.createElement(`span`));
-			spanContext.textContent = message.content;
+			//#region External
+			const divExternal = divMessage.appendChild(document.createElement(`div`));
+			divExternal.classList.add(`-external`, `flex`);
+			//#region Link
+			if (message.share !== null) {
+				const aLink = divExternal.appendChild(document.createElement(`a`));
+				aLink.classList.add(`depth`, `highlight-background`, `rounded`, `with-padding`, `flex`, `secondary-centered`);
+				const link = message.share.link;
+				aLink.href = link;
+				aLink.addEventListener(`click`, async (event) => {
+					event.preventDefault();
+					if (await window.confirmAsync(`Follow the link?\n${link}`)) {
+						location.assign(link);
+					}
+				});
+				const imgIcon = aLink.appendChild(document.createElement(`img`));
+				imgIcon.classList.add(`icon`);
+				imgIcon.alt = `Link`;
+				imgIcon.src = `../Resources/Link.png`;
+			}
+			//#endregion
+			//#region Photos
+			for (const photo of message.photos) {
+				const aLink = divExternal.appendChild(document.createElement(`a`));
+				aLink.classList.add(`depth`, `highlight-background`, `rounded`, `with-padding`, `flex`, `secondary-centered`);
+				const link = photo.uri;
+				aLink.href = link;
+				aLink.addEventListener(`click`, async (event) => {
+					event.preventDefault();
+					if (await window.confirmAsync(`Follow the link?\n${link}`)) {
+						location.assign(link);
+					}
+				});
+				const imgIcon = aLink.appendChild(document.createElement(`img`));
+				imgIcon.classList.add(`icon`);
+				imgIcon.alt = `Photo`;
+				imgIcon.src = `../Resources/Image.png`;
+			}
+			//#endregion
+			//#region Photos
+			for (const audio of message.audioFiles) {
+				const aLink = divExternal.appendChild(document.createElement(`a`));
+				aLink.classList.add(`depth`, `highlight-background`, `rounded`, `with-padding`, `flex`, `secondary-centered`);
+				const link = audio.uri;
+				aLink.href = link;
+				aLink.addEventListener(`click`, async (event) => {
+					event.preventDefault();
+					if (await window.confirmAsync(`Follow the link?\n${link}`)) {
+						location.assign(link);
+					}
+				});
+				const imgIcon = aLink.appendChild(document.createElement(`img`));
+				imgIcon.classList.add(`icon`);
+				imgIcon.alt = `Voice`;
+				imgIcon.src = `../Resources/Image.png`;
+			}
+			//#endregion
+			//#endregion
+			//#region Content
+			if (message.content !== null) {
+				const spanContent = divMessage.appendChild(document.createElement(`span`));
+				spanContent.textContent = message.content;
+				/* if (message.callDuration !== null) {
+					spanContent.textContent += `\n${message.callDuration} секунд`;
+				} */
+			}
+			//#endregion
+			//#region Line
 			const hr = divMessage.appendChild(document.createElement(`hr`));
 			hr.classList.add(`depth`);
+			//#endregion
 			//#region Details
 			const divDetails = divMessage.appendChild(document.createElement(`div`));
 			divDetails.classList.add(`-details`, `flex`, `with-gap`);

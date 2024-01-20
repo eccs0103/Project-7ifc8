@@ -33,6 +33,18 @@ div.-message.-owner {
 	align-self: end;
 }
 
+div.-external:not(:empty) {
+	margin-bottom: var(--size-gap);
+}
+
+div.-external * {
+	--size-gap: calc(var(--size-standart) / 8);
+}
+
+div.-external + hr {
+	margin-top: 0;
+}
+
 div.-details {
 	justify-content: space-between;
 }

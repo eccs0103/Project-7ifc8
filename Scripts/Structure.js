@@ -176,7 +176,7 @@ class Message extends NotationProgenitor {
 			if (!(typeof (callDuration) === `number`)) {
 				throw new TypeError(`Property callDuration has invalid ${typeof (callDuration)} type`);
 			}
-			result.#callDuration = callDuration; //TODO check
+			result.#callDuration = callDuration;
 		}
 		const photos = Reflect.get(source, `photos`);
 		if (photos !== undefined) {
